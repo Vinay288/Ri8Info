@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News Article Form</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <!-- Add additional styling for improved appearance -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea.auto-height {
+            resize: none; /* Disable manual resizing */
+            overflow-y: hidden; /* Hide vertical scrollbar */
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>News Article Form</h2>
+
+    <form th:action="@{/article/form}" th:object="${newsEntity}" method="post">
+
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" th:field="*{author}" required>
+        </div>
+
+        <div>
+            <label for="content">Content:</label>
+            <textarea onkeyup="textAreaAdjust(this)" id="content" th:field="*{content}" required></textarea>
+        </div>
+
+        <div>
+            <label for="createdAt">Created At:</label>
+            <input type="datetime-local" id="createdAt" th:field="*{createdAt}" required>
+        </div>
+
+        <div>
+            <label for="description">Description:</label>
+            <textarea onkeyup="textAreaAdjust(this)" id="description" class="auto-height" th:field="*{description}" required></textarea>
+        </div>
+
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" th:field="*{title}" required>
+        </div>
+
+        <div>
+            <label for="url">URL:</label>
+            <input type="url" id="url" th:field="*{url}" required>
+        </div>
+
+        <div>
+            <label for="urlToImage">URL To Image:</label>
+            <input type="url" id="urlToImage" th:field="*{urlToImage}" required>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" oninput="validatePassword()" th:field="*{password}" required>
+            <div id="passwordError" class="error-message"></div>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</div>
+<script>
+    function textAreaAdjust(element) {
+        element.style.height = "1px";
+        element.style.height = (25+element.scrollHeight)+"px";
+    }
+
+    function validatePassword() {
+        // Get the password input and error message elements
+        var passwordInput = document.getElementById('password');
+        var passwordError = document.getElementById('passwordError');
+
+        // Your password validation logic goes here
+        var password = passwordInput.value;
+
+        // Example validation: Password should have at least 8 characters
+        if (password !== 'Qwerty@122') {
+            passwordError.textContent = 'Invalid password';
+        } else {
+            passwordError.textContent = ''; // Clear error message if validation passes
+        }
+    }
+</script>
+</body>
+</html>

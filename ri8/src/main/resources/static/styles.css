@@ -1,0 +1,62 @@
+/* src/main/resources/static/css/styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: blanchedalmond;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    width: 100%; /* Ensure the form takes full width */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+label {
+    margin-top: 10px;
+}
+
+input,
+textarea {
+    width: 100%; /* Make input and textarea full width */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+/* Larger boxes for description and content */
+textarea#description,
+textarea#content {
+    height: 150px; /* Adjust the height as needed */
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Make button full width */
+}
+
+button:hover {
+    background-color: #45a049;
+}

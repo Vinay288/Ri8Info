@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: com.ri8info.ri8.Ri8Application
+
