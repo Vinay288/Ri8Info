@@ -14,7 +14,9 @@ COPY src src
 RUN gradle build -x test
 
 # Use an official OpenJDK runtime as the production image
-FROM openjdk:17-jre-slim
+
+FROM openjdk:17-jdk-slim
+
 
 # Set the working directory to /app
 WORKDIR /app
