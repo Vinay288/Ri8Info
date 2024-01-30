@@ -21,7 +21,7 @@ FROM openjdk:17-jdk-slim
 # Set the working directory to /app
 WORKDIR /app
 
-RUN ls -l app/
+RUN ls -l /app
 
 # Copy the JAR file from the build stage to the production image
 
