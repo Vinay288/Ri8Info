@@ -21,8 +21,11 @@ FROM openjdk:17-jdk-slim
 # Set the working directory to /app
 WORKDIR /app
 
+RUN ls -l ./
+RUN ls -l ri8/build/libs
+
 # Copy the JAR file from the build stage to the production image
-COPY --from=build /build/libs/ri8-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=build ri8/build/libs/ri8-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
