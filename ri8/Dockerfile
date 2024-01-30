@@ -21,7 +21,7 @@ FROM openjdk:17-jdk-slim
 # Set the working directory to /app
 WORKDIR /app
 
-RUN ls -l home/gradle/ri8/build/
+RUN ls -l /home/gradle/ri8/build/
 
 # Copy the JAR file from the build stage to the production image
 COPY --from=build /home/gradle/ri8/build/libs/ri8-0.0.1-SNAPSHOT.jar /app/app.jar
