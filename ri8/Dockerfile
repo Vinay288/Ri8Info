@@ -1,5 +1,5 @@
 # Use an official Gradle image as a build stage
-FROM gradle:7.2.0-jdk11 AS build
+FROM gradle:8.5.0-jdk17 AS build
 
 # Set the working directory to /app
 WORKDIR ri8/
@@ -14,7 +14,7 @@ COPY src src
 RUN gradle build -x test
 
 # Use an official OpenJDK runtime as the production image
-FROM openjdk:11-jre-slim
+FROM openjdk:17-jre-slim
 
 # Set the working directory to /app
 WORKDIR /app
