@@ -1,11 +1,26 @@
-# Use an official OpenJDK runtime as a parent image
+# Use an official Gradle image as a build stage
+FROM gradle:7.2.0-jdk11 AS build
+
+# Set the working directory to /app
+WORKDIR ri8/
+
+# Copy the build.gradle and settings.gradle files to the container
+COPY build.gradle settings.gradle ./
+
+# Copy the src folder to the container
+COPY src src
+
+# Build the application
+RUN gradle build -x test
+
+# Use an official OpenJDK runtime as the production image
 FROM openjdk:11-jre-slim
 
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY out/artifacts/ri8_jar/ri8.jar /app/app.jar
+# Copy the JAR file from the build stage to the production image
+COPY --from=build /build/libs/ri8-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
